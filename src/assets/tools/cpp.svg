@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
+  <rect x="2" y="4" width="20" height="16" rx="2" fill="#00599C"/>
+  <text x="12" y="14" font-family="monospace" font-size="10" font-weight="bold" text-anchor="middle" fill="white">C++</text>
+  <path d="M16 10h2v1h-2v2h-1v-2h-2v-1h2V8h1v2z" fill="white"/>
+  <path d="M19 10h2v1h-2v2h-1v-2h-2v-1h2V8h1v2z" fill="white"/>
+</svg>

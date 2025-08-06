@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
+  <defs>
+    <linearGradient id="python-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3776ab"/>
+      <stop offset="100%" style="stop-color:#ffd343"/>
+    </linearGradient>
+  </defs>
+  <path d="M12 2C8.686 2 6 4.686 6 8v2c0 1.104.896 2 2 2h8c1.104 0 2-.896 2-2V8c0-3.314-2.686-6-6-6z" fill="#3776ab"/>
+  <path d="M12 22c3.314 0 6-2.686 6-6v-2c0-1.104-.896-2-2-2H8c-1.104 0-2 .896-2 2v2c0 3.314 2.686 6 6 6z" fill="#ffd343"/>
+  <circle cx="9" cy="6" r="1" fill="white"/>
+  <circle cx="15" cy="18" r="1" fill="white"/>
+</svg>
