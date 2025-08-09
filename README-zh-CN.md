@@ -101,3 +101,4 @@ bun new-post
 本项目基于 Apache 2.0 许可证。
 
 [![Star History Chart](https://api.star-history.com/svg?repos=cworld1/astro-theme-pure&type=Date)](https://star-history.com/#cworld1/astro-theme-pure&Date)
+npm run dev
