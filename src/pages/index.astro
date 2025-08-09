@@ -12,9 +12,9 @@ import SkillLayout from '@/components/home/SkillLayout.astro'
 import avatar from '@/assets/avatar.png'
 import config from '@/site-config'
 
-const languages = ['Html', 'JavaScript', 'CSS', 'Shell']
-const frontend = ['TypeScript', 'Vite', 'Webpack', 'Astro']
-const backend = ['Vercel', 'Waline']
+const languages = ['Python', 'C/C++', 'R']
+const frontend = ['VS Code', 'PyCharm', 'RStudio', 'Git', 'PyTorch', 'Typora']
+const backend = ['Windows', 'Linux']
 
 const MAX_POSTS = 10
 const allPosts = await getBlogCollection()
@@ -44,6 +44,14 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
             target='_blank'
           >
             <Icon name='github' class='size-5' slot='icon' />
+          </Label>
+          <Label
+            title='学术版本'
+            as='a'
+            href='https://Zhaoyi-Tian.github.io'
+            target='_blank'
+          >
+            <Icon name='earth' class='size-5' slot='icon' />
           </Label>
         </div>
       </div>
@@ -193,9 +201,9 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
       </Section> -->
 
       <Section title='Skills'>
-        <SkillLayout title='Languages' skills={languages} />
-        <SkillLayout title='Frontend' skills={frontend} />
-        <SkillLayout title='Backend' skills={backend} />
+        <SkillLayout title='语言' skills={languages} />
+        <SkillLayout title='开发' skills={frontend} />
+        <SkillLayout title='环境' skills={backend} />
       </Section>
     </div>
     <Quote class='mt-12' />
