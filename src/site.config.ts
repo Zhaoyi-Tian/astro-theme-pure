@@ -7,7 +7,7 @@ export const theme: ThemeUserConfig = {
   /** Will be used in index page & copyright declaration */
   author: '田照亿',
   /** Description metadata for your website. Can be used in page metadata. */
-  description: '一个简简单单的个人主页',
+  description: 'tzy的个人主页',
   /** The default favicon for your site which should be a path to an image in the `public/` directory. */
   favicon: '/favicon/favicon.ico',
   /** Specify the default language for this site. */
@@ -88,9 +88,9 @@ export const theme: ThemeUserConfig = {
     externalLinksContent: ' ↗',
     /** Blog page size for pagination (optional) */
     blogPageSize: 8,
-    externalLinkArrow: true, // show external link arrow
-    // Currently support weibo, x, bluesky
-    share: ['weibo', 'x', 'bluesky']
+    externalLinkArrow: false, // show external link arrow
+    // // Currently support weibo, x, bluesky
+    // share: ['weibo', 'x', 'bluesky']
   }
 }
 
@@ -117,12 +117,9 @@ export const integ: IntegrationUserConfig = {
   // Add a random quote to the footer (default on homepage footer)
   // See: https://astro-pure.js.org/docs/integrations/advanced#web-content-render
   quote: {
-    // https://developer.hitokoto.cn/sentence/#%E8%AF%B7%E6%B1%82%E5%9C%B0%E5%9D%80
-    // server: 'https://v1.hitokoto.cn/?c=i',
-    // target: (data) => (data as { hitokoto: string }).hitokoto || 'Error'
-    // https://github.com/lukePeavey/quotable
-    server: 'https://api.quotable.io/quotes/random?maxLength=60',
-    target: `(data) => data[0].content || 'Error'`
+    // 使用本地API随机获取语录
+    server: '/api/quotes',
+    target: `(data) => data.hitokoto || 'Error'`
   },
   // UnoCSS typography
   // See: https://unocss.dev/presets/typography
