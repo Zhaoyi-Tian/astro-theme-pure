@@ -20,16 +20,47 @@ const { stats } = Astro.props as Props
 
 async function fetchCount(item: SubstatsItem) {
   if (!item.api) return
+  
+  // GitHub API 直接获取
+  if (item.api.startsWith('github/')) {
+    const username = item.api.replace('github/', '')
+    try {
+      const response = await fetch(`https://api.github.com/users/${username}`)
+      if (!response.ok) {
+        throw new Error(`GitHub API ${response.status}: ${response.statusText}`)
+      }
+      const data = await response.json()
+      item.count = data.followers
+      return
+    } catch (error) {
+      console.error(`GitHub API error for ${username}:`, error)
+      // 继续尝试 Substats API
+    }
+  }
+  
+  // 备用：Substats API
   try {
-    const response = await fetch(`https://api.swo.moe/stats/${item.api}`)
+    const response = await fetch(`https://api.swo.moe/stats/${item.api}`, {
+      timeout: 5000,
+    })
+    
+    if (!response.ok) {
+      throw new Error(`HTTP ${response.status}: ${response.statusText}`)
+    }
+    
     const data = await response.json()
+    console.log(`Substats API response for ${item.api}:`, data)
+    
     if (data.failed) {
-      throw new Error(data.message)
-    } else {
+      throw new Error(data.message || 'API returned failed status')
+    } else if (typeof data.count === 'number') {
       item.count = data.count
+    } else {
+      throw new Error(`Invalid count value: ${data.count}`)
     }
   } catch (error) {
-    console.error('Error in Substats fetching: ' + error)
+    console.error(`Error fetching stats for ${item.api}: ${error}`)
+    item.count = -1 // 用 -1 表示获取失败
   }
 }
 
@@ -50,13 +81,17 @@ await Promise.all(stats.map(fetchCount))
           <div class='flex-1 text-foreground transition-colors group-hover:text-primary'>
             {platform}
           </div>
-          {count ? (
-            <div class='flex items-center gap-1.5'>
-              <samp>{count}</samp>
-              <span class='text-sm font-normal'>{text}</span>
-            </div>
+          {count !== undefined ? (
+            count === -1 ? (
+              <span class='text-sm text-red-500'>Failed to load</span>
+            ) : (
+              <div class='flex items-center gap-1.5'>
+                <samp>{count}</samp>
+                <span class='text-sm font-normal'>{text}</span>
+              </div>
+            )
           ) : (
-            'null'
+            <span class='text-sm text-yellow-500'>Loading...</span>
           )}
         </div>
       </a>
