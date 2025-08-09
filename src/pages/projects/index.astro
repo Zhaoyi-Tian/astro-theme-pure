@@ -7,9 +7,8 @@ import ProjectSection from '@/components/projects/ProjectSection.astro'
 import Sponsors from '@/components/projects/Sponsors.astro'
 import Sponsorship from '@/components/projects/Sponsorship.astro'
 import alipay from '@/assets/alipay-qrcode.jpg'
-import KeyIcon from '@/assets/icons/key.svg'
 import wechat from '@/assets/wechat-qrcode.jpg'
-import config from '@/site-config'
+import sponsorsData from '@/data/sponsors.json'
 
 const headings = [
   { depth: 2, slug: 'theme', text: 'Theme' },
@@ -63,6 +62,7 @@ const headings = [
       {
         name: '🤖 nanoGPT',
         description: '实现了nanoGPT从头开始训和续训的过程，使用中文科幻小说数据集进行训练',
+        image: 'nanoGPT.png',
         links: [
           { type: 'github', href: 'https://github.com/Zhaoyi-Tian/nanoGPT' }
         ]
@@ -70,6 +70,7 @@ const headings = [
       {
         name: '📝 万词斩-程设QT大作业',
         description: '本软件是一个多功能背单词软件，使用pyQT5，并导入了qfluentwidgets库，旨在模仿windows商店的风格',
+        image: '万词斩.png',
         links: [
           { type: 'github', href: 'https://github.com/Zhaoyi-Tian/VocabSlayer' }
         ]
@@ -96,6 +97,7 @@ const headings = [
       {
         name: '⚔️ 魔兽世界-程序设计实习',
         description: '北京大学（PKU）程序设计实习魔兽世界大作业与测试数据',
+        image: '魔兽.png',
         links: [
           { type: 'github', href: 'https://github.com/Zhaoyi-Tian/World-of-Warcraft-Major-Project' }
         ]
@@ -103,6 +105,7 @@ const headings = [
       {
         name: 'lab-人工智能引论',
         description: '北京大学（PKU）2025年春季学期人工智能引论lab',
+        image: 'ai引论.png',
         links: [{ type: 'github', href: 'https://github.com/Zhaoyi-Tian/Introduction-to-AI-PKU-2025spring' }]
       }
     ]}
@@ -145,12 +148,7 @@ const headings = [
   />
   <p>Thanks to the following sponsors:</p>
   <Sponsors
-    sponsors={[
-      { name: 'C*a（酷安@暴走の蜗牛）', amount: '2.00', date: '2019-07-02' },
-      { name: '华雄(QQ：1300****71)', amount: '5.00', date: '2019-12-30' },
-      { name: '◌(QQ：1934****45)', amount: '3.00', date: '2019-12-30' },
-      { name: 'Anonymous', amount: '20.00', date: '2022-04-06' }
-    ]}
+    sponsors={sponsorsData}
   />
 </PageLayout>
 
