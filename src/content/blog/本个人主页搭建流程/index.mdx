@@ -1,0 +1,131 @@
+---
+title: '本主页搭建流程'
+publishDate: 2025-08-10
+description: "零基础小白搭建个人主页的流程，愿能够有所帮助"
+tags:
+  - 个人主页
+  - ai
+language: '中文'
+heroImage: { src: './真我.png', color: '#fccb65' }
+---
+
+import { Aside } from 'astro-pure/user'
+
+import { Steps } from 'astro-pure/user'
+
+import { LinkPreview } from 'astro-pure/advanced'
+
+## 前言
+
+假期太长，导致没什么事做，于是想着捣鼓一个个人主页出来。前前后后差不多一个多月，才将其改成了我比较满意的样子。
+
+一共做了两个版本，放github上的[学术主页](https://zhaoyi-tian.github.io/)和放vercel上的Astro风格的[个人博客](https://www.zhaoyi-tian.cn/)，供大家参考。
+
+此攻略算是经验分享帖，面向零基础小白，以下工具和技能对于你搭建自己的个人主页非常有帮助，但很多都是可以现学或问ai的：
+
+- 基本的github技能
+- 基本的git技能（在本地搭建并修改网页非常有用）
+- ai使用技能，小白最好用能够自动帮你修改代码的ai，下述是我最近用的非常多的：
+  - vscode的copilot，最好能先去github上蹭一个学生优惠包
+  - claude code。非常有用，但需要翻墙，这里我给出两个国内访问的链接
+    - [any Router](https://anyrouter.top/register?aff=5iOh)，纯公益网站，每天签到可以25$额度，邀请一个人可有50$额度。但最近可能是人逐渐多起来了，使用体验极差，一直报错
+    - [New API](https://instcopilot-api.com/register?aff=1Fqv)，收费，注册即有7$额度，邀请一个人会有2$额度，但好在稳定，使用体验非常好。（其实额度也花得比较慢）
+- markdown的写法，推荐用typora，相信我，这么方便，不用排版就很美观的工具学之后一定不亏。
+
+## 学术主页&Github pages
+
+### 基本的网页搭建
+
+故事的开端源自一则树洞#7489431
+
+> #7488958 
+> 大家好，这是一份面向小白的 GitHub Pages 个人网站搭建指南。本指南将尽量避免复杂的专业术语，并提供两种主流的搭建方法，你可以根据自己的情况选择。
+>
+> 申明：dz本人并非xk大佬，所以仅会最简单的配置，所以这篇指南比较适合新手来练练。毕竟拥有个人网站是一个很酷的事😎 另外，可能需要你有一定（极少量）的github基础。
+>
+> 指南详见：
+> https://classicalqy.github.io/website_building/
+>
+> 这里是指南概览：
+>
+> 指南核心目标：本指南旨在帮助初学者（小白）利用 GitHub Pages 免费搭建属于自己的个人网站。文章语言通俗易懂，并提供了三种不同的方法以适应不同需求的用户。
+>
+> 搭建准备与关键第一步
+> - 准备工作：搭建前需准备好三样东西：科学上网工具、一个 GitHub 账号以及一台电脑。
+> - 创建核心仓库：最关键的一步是创建一个特殊命名的公开（Public）仓库。仓库名必须严格遵循 你的用户名.github.io 的格式，这是 GitHub Pages 识别并生成个人主页网站的基础。
+>
+> 三种网站内容添加方法：指南提供了三种由简到繁的网站搭建方式
+> - 方法 A：手动创建网页
+> 简介：最基础的方法，直接在仓库中创建一个 index.html 文件并写入简单的 HTML 代码。
+> 优点：能快速看到成果，为后续深入学习前端知识（HTML/CSS）打下基础。
+> 适合人群：希望从零开始，未来想深入学习、实现高度个性化网站的学习者。
+>
+> - 方法 B：【推荐】使用官方主题模板
+> 简介：通过 GitHub 仓库的 Settings -> Pages -> Theme Chooser 功能，选择一个官方预设主题。
+> 优点：无需编写复杂代码，只需通过修改 _config.yml 文件（网站配置）和 README.md 文件（主页内容）即可快速生成一个美观的博客或展示网站。内容写作使用简单的 Markdown 语法。
+> 适合人群：想快速拥有一个漂亮网站用于内容分享，但不想深入研究技术的用户。
+>
+> 方法 C：【最高效】Fork 成品模板
+> 简介：在 GitHub 上找到一个设计精良的第三方网站模板项目，将其完整地“Fork”（复制）到自己的账号下。
+> 关键操作：Fork 后，必须将这个新仓库的名称重命名为 你的用户名.github.io 来激活主页服务。
+> 后续步骤：主要工作是修改模板的核心配置文件 _config.yml，将里面的标题、作者、描述、社交链接等信息替换为自己的。
+> 优点：能以最快速度获得一个功能强大、设计精美的成品网站。
+> 适合人群：几乎所有人，特别是希望高效获得高质量个人网站的用户。
+>
+> 常见问题与后续学习
+> 问题排查 (FAQ)：指南解答了常见的 “404 Not Found” 错误（通常由仓库名错误、部署延迟等原因导致），并简要说明了如何发布新文章和绑定自定义域名。
+> 进阶资源：最后，文章为希望深入学习的用户提供了非常丰富的学习资源，包括 GitHub 和 Jekyll 的官方文档、Markdown 语法教程、HTML/CSS 和 Git 的入门指南，以及更多寻找优秀网站模板的途径。
+>
+> 总而言之，这是一篇从零开始、步骤清晰、考虑周全的 GitHub Pages 建站教程。
+
+### 后续网页的修改
+
+当然，小白的我选择了第三种方式并fork了一个[学术主页模板](https://github.com/academicpages/academicpages.github.io)，但是不是很满意，于是想要对其进行修改，譬如：
+
+- 在目前还没有科研的情况下删去一些没用的页面，如talk，public。
+- 新增一个projects页面来放一些自己课上做过的一些项目，并想通过月份分组，再用时间轴串起来。
+- 对于blog和project的卡片我希望它能够有渐变的背景和类github的样式。
+
+最终成果如下：![image-20250810213109260](C:\Users\50376\AppData\Roaming\Typora\typora-user-images\image-20250810213109260.png)
+
+不讨论具体实现细节，只总结经验：
+
+1. 在本地部署一个网站并实时预览自己的修改是非常有用的。（不知道为什么，该学术主页的docker部署方式会报错，我最终是使用`bundle exec jekyll serve -l -H localhost`这个命令才在本地搭建成功的，具体可见你选择的主页的README文件）
+2. 用和ai对话的方式来改页面和debug效率太低，强烈建议使用vscodeIDE并用agent类型的ai，我用的ai可见前言。
+3. 改页面的时候，如果涉及到某种样式（譬如卡片由白色向图片渐变的样式），不要试图向ai用语言描述，这大概率效果不好。我是看到[某位学长网站](https://www.lyt0112.com/)的卡片后想要模仿，就直接F12查看源码，复制元素和CSS，丢给ai，于是完美复现。
+4. debug直接把报错丢给agent ai，效果很好（有一些jelly插件本地能运行但github pages上运行不了，于是会报错，网页也会一直显示之前的版本也不更新，这个时候需要去github官网上复制报错信息）
+5. 使用git进行版本控制可以有效防止ai对你的代码进行乱改。
+
+## Astro风格个人博客&Vercel
+
+<Aside type='caution' title='You should know it!'>vercel托管的个人主页会被墙，所以需要自己去买域名并通过CloudFlare进行代理</Aside>
+
+### 基本的网页搭建
+
+我不是之前一直对着[一位学长的主页](https://www.lyt0112.com/)改吗，结果我突然发现其有[相应的模板](https://github.com/cworld1/astro-theme-pure)，看着我改了那么久的学术主页，再看看这个精美的模板，小登有点破防了。在纠结一阵后，最终决定在保留原先主页的同时再搭一个Astro风格的个人博客，成品如下：![image-20250810220750298](C:\Users\50376\AppData\Roaming\Typora\typora-user-images\image-20250810220750298.png)
+
+[Astro](https://github.com/cworld1/astro-theme-pure)模板原生支持vercel，导入非常方便，此处为其[文档](https://astro-pure.js.org/docs)
+
+简化部署流程如下：
+
+<Steps>
+1. github上fork [Astro](https://github.com/cworld1/astro-theme-pure)
+2. 用github账号登录vercel  
+3. 然后按照流程导入库即可，基本不需要额外操作
+  </Steps>
+
+vercel会监听github库的变化，也就是说你git提交到github上之后和github pages一样，vercel的网页也会自动再次部署。
+
+### 后续网页的修改
+
+基本的通过ai修改的经验和学术主页一样，我甚至直接让ai把我学术主页上的东西同步到个人博客中。
+
+### 域名及通过CloudFlare进行代理
+
+这个博客写得很清楚
+
+<LinkPreview href='https://blog.csdn.net/qq_62352333/article/details/134583242' />
+
+现在CloudFlare的主页有点变化![image-20250810230948764](C:\Users\50376\AppData\Roaming\Typora\typora-user-images\image-20250810230948764.png)
+
+在这个页面输入买的域名即可。
