@@ -1,5 +1,6 @@
 ---
 title: '社会心理学关键概念表补充'
+slug: 'social-psychology-key-concepts'
 publishDate: 2025-06-19
 description: "简单做的一个毛利华社会心理学关键概念整理，一部分来自《社会心理学》（戴维 •迈尔斯  第十一版），部分概念标明了页数，另一部分来自ai。"
 tags:

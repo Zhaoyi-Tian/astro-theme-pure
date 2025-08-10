@@ -1,5 +1,6 @@
 ---
 title: '北大课程资料'
+slug: 'pku-course-materials'
 publishDate: 2025-08-03
 description: "我将在此记录一些我修过且觉得值得记录的课程。主要内容会包括一些xk的专业课以及'ai+心理认知'项目的课程"
 tags:

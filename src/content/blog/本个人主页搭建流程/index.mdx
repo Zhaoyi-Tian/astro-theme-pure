@@ -1,5 +1,6 @@
 ---
 title: '本主页搭建流程'
+slug: 'personal-website-setup'
 publishDate: 2025-08-10
 description: "零基础小白搭建个人主页的流程，愿能够有所帮助"
 tags:
@@ -18,13 +19,13 @@ import { LinkPreview } from 'astro-pure/advanced'
 
 ## 前言
 
-假期较长，闲暇时间较多，于是想着捣鼓一个个人主页出来。前后耗时约一个月，高强度使用AI，才将其改成了我比较满意的样子。
+假期较长，闲暇时间较多，于是想着捣鼓一个个人主页出来。断断续续弄了约一个月，高强度使用AI，才将其改成了我比较满意的样子。
 
 一共做了两个版本，部署在GitHub上的[学术主页](https://zhaoyi-tian.github.io/)和部署在Vercel上的Astro风格的[个人博客](https://www.zhaoyi-tian.cn/)，供大家参考。
 
 申明：本人非xk大佬，不会写前端代码，大多数工作由AI完成。
 
-此攻略算是经验分享帖，面向零基础小白，为搭建个人网站节省时间。
+此攻略算是经验分享帖，面向零基础小白，为搭建个性化网站节省时间。
 
 以下工具和技能对于你搭建自己的个人主页非常有帮助，但很多都是可以现学或问AI的：
 
@@ -107,7 +108,9 @@ import { LinkPreview } from 'astro-pure/advanced'
 
 ### 基本的网页搭建
 
-我之前一直对着[一位学长的主页](https://www.lyt0112.com/)修改，结果突然发现其有[相应的模板](https://github.com/cworld1/astro-theme-pure)，看着我改了那么久的学术主页，再看看这个精美的模板，我感到有些失落。在纠结一阵后，最终决定在保留原先主页的同时再搭一个Astro风格的个人博客，成品如下：![image-20250810220750298](images/image-20250810220750298.png)
+vercel有其模板库[Find your Template](https://vercel.com/templates)
+
+我之前一直对着[一位学长的主页](https://www.lyt0112.com/)修改，结果突然发现其有[相应的模板](https://github.com/cworld1/astro-theme-pure)，看着我改了那么久的学术主页，再看看这个精美的模板，小登有点破防。在纠结一阵后，最终决定在保留原先主页的同时再搭一个Astro风格的个人博客，成品如下：![image-20250810220750298](images/image-20250810220750298.png)
 
 [Astro](https://github.com/cworld1/astro-theme-pure)模板原生支持Vercel，导入非常方便，此处为其[文档](https://astro-pure.js.org/docs)
 
@@ -148,7 +151,7 @@ Vercel会监听GitHub库的变化，也就是说你通过Git提交到GitHub上�
 阿里云学生每年有一张300块钱的券，[链接在此](https://university.aliyun.com/action/promotion-activity?clubTaskBiz=subTask..12036023..10236..&userCode=lsi8e6wt)，但使用有较多限制，不能用来购买域名等，但似乎可以用来购买云主机，有兴趣可以尝试一下。
 
 ## 致谢
-在个人主页搭建过程中，得到了两位学长的重要启发，在此特别致谢：
+在个人主页搭建过程中，得到了两位学长主页的重要启发，在此特别致谢：
 
 Yutong Liang（https://www.lyt0112.com/）
 
