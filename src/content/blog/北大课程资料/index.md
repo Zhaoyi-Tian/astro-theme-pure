@@ -121,11 +121,11 @@ xk专业课
 
 **相关资料**
 
-- 我的心统1期末cheatsheet <a href="/files/课程资料-社会心理学/心统一期末cheatsheet.pdf" download="心统一期末cheatsheet.pdf" class="btn btn--primary">
+- 我的心统1期末cheatsheet <a href="/astro-theme-pure/files/课程资料-社会心理学/心统一期末cheatsheet.pdf" download="心统一期末cheatsheet.pdf" class="btn btn--primary">
       <i class="far fa-file-pdf"></i> pdf文件 </a>
-- 我的心统2期中cheatsheet <a href="/files/课程资料-社会心理学/心统二期中cheatsheet.pdf" download="心统二期中cheatsheet.pdf" class="btn btn--primary">
+- 我的心统2期中cheatsheet <a href="/astro-theme-pure/files/课程资料-社会心理学/心统二期中cheatsheet.pdf" download="心统二期中cheatsheet.pdf" class="btn btn--primary">
       <i class="far fa-file-pdf"></i> pdf文件 </a>
-- 我的心统2期末cheatsheet <a href="/files/课程资料-社会心理学/心统二期末cheatsheet.pdf" download="心统二期末cheatsheet.pdf" class="btn btn--primary"> <i class="far fa-file-pdf"></i> pdf文件 </a>
+- 我的心统2期末cheatsheet <a href="/astro-theme-pure/files/课程资料-社会心理学/心统二期末cheatsheet.pdf" download="心统二期末cheatsheet.pdf" class="btn btn--primary"> <i class="far fa-file-pdf"></i> pdf文件 </a>
 
 ### 社会心理学
 
@@ -156,11 +156,11 @@ xk专业课
 
 **相关资料**
 
-- 我的社心关键概念整理 <a href="/files/课程资料-社会心理学/mlh_社心关键概念整理.pdf" download="社心关键概念整理.pdf" class="btn btn--primary">
+- 我的社心关键概念整理 <a href="/astro-theme-pure/files/课程资料-社会心理学/mlh_社心关键概念整理.pdf" download="社心关键概念整理.pdf" class="btn btn--primary">
       <i class="far fa-file-pdf"></i> pdf文件 </a>
-- 我的实验设计作业<a href="/files/课程资料-社会心理学/实验设计.pdf" download="社心实验设计.pdf" class="btn btn--primary">
+- 我的实验设计作业<a href="/astro-theme-pure/files/课程资料-社会心理学/实验设计.pdf" download="社心实验设计.pdf" class="btn btn--primary">
     <i class="far fa-file-pdf"></i> pdf文件 </a>
-- 我的知识运用作业<a href="/files/课程资料-社会心理学/知识运用.pdf" download="知识运用.pdf" class="btn btn--primary">
+- 我的知识运用作业<a href="/astro-theme-pure/files/课程资料-社会心理学/知识运用.pdf" download="知识运用.pdf" class="btn btn--primary">
       <i class="far fa-file-pdf"></i> pdf文件 </a>
   - ps:我这两个作业都是满分，挺奇怪的，总之合理使用ai吧。
 - 树洞上一位同学的测评洞#7464517
