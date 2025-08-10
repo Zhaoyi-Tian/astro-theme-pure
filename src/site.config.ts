@@ -108,7 +108,7 @@ export const integ: IntegrationUserConfig = {
     applyTip: [
       { name: 'Name', val: theme.title },
       { name: 'Desc', val: theme.description || 'Null' },
-      { name: 'Link', val: 'https://zhaoyi-tian.github.io/' },
+      { name: 'Link', val: 'https://zhaoyi-tian.cn' },
       { name: 'Avatar', val: 'https://zhaoyi-tian.github.io/images/profile.png' }
     ]
   },
