@@ -40,9 +40,14 @@ async function fetchCount(item: SubstatsItem) {
   
   // 备用：Substats API
   try {
+    const controller = new AbortController()
+    const timeoutId = setTimeout(() => controller.abort(), 5000)
+    
     const response = await fetch(`https://api.swo.moe/stats/${item.api}`, {
-      timeout: 5000,
+      signal: controller.signal
     })
+    
+    clearTimeout(timeoutId)
     
     if (!response.ok) {
       throw new Error(`HTTP ${response.status}: ${response.statusText}`)
