@@ -143,7 +143,7 @@ export const integ: IntegrationUserConfig = {
   waline: {
     enable: true,
     // Server service link (更新为你的Waline服务器地址)
-    server: 'https://Zhaoyi-Tian.vercel.app/',
+    server: 'https://zhaoyi-tian.cn/',
     // Refer https://waline.js.org/en/guide/features/emoji.html
     emoji: ['bmoji', 'weibo'],
     // Refer https://waline.js.org/en/reference/client/props.html
