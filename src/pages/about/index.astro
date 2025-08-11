@@ -14,17 +14,152 @@ const headings = [
 ]
 ---
 
+<style>
+  .content {
+    display: flex;
+    gap: 2rem;
+    align-items: flex-start;
+    margin-bottom: 2rem;
+  }
+  
+  .about-image-container {
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .intro-text p {
+    margin: 0.5rem 0;
+  }
+  
+  .intro-text ul {
+    margin: 0.5rem 0;
+  }
+  
+  #profile-image {
+    width: 250px;
+    height: 250px;
+    border-radius: 15px;
+    object-fit: cover;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+  
+  #profile-image:hover {
+    transform: scale(1.02);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+  }
+  
+  .image-caption {
+    margin-top: 1rem;
+    text-align: center;
+    color: var(--color-text-secondary, #666);
+    font-size: 0.9rem;
+  }
+  
+  .image-caption span {
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    background: var(--color-bg-muted, #f5f5f5);
+    transition: all 0.3s ease;
+  }
+  
+  .image-caption span:hover {
+    color: var(--color-text-primary, #333) !important;
+    background: var(--color-bg-secondary, #e5e5e5);
+  }
+  
+  @media (max-width: 768px) {
+    .content {
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    #profile-image {
+      width: 250px;
+      height: 250px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    #profile-image {
+      width: 200px;
+      height: 200px;
+    }
+  }
+</style>
+
 <PageLayout title='About' {headings} info='/about'>
   <h2 id='myself'>田照亿 (Zhaoyi Tian)</h2>
   
-  <div class="intro-section">
-    <div class="intro-content">
+  <div class="content">
+    <div class="about-image-container">
+      <img 
+        alt="田照亿" 
+        decoding="async" 
+        height="300" 
+        loading="eager" 
+        src="/profile/1.png" 
+        width="300" 
+        id="profile-image" 
+        style="opacity: 1;"
+      />
+      <p class="image-caption">
+        Guess what? 
+        <span class="transition-colors bg-muted hover:text-inherit rounded text-transparent">
+          Click the image to change it!
+        </span>
+      </p>
+    </div>
+    
+    <div class="intro-text">
       <p>你好！👋 我是田照亿，现为北京大学<a href="https://eecs.pku.edu.cn/">信息科学技术学院</a>智能科学与技术专业一年级本科生。</p>
       <p>我的研究愿景是创造能够像人类一样工作、思考的通用智能体，并正努力寻找感兴趣的方向。</p>
       <ul>
         <li>2025年-至今，修读<a href="https://www.psy.pku.edu.cn/xwzx/tzgg/387146.htm">2025年"AI+心理认知"本科教育项目</a></li>
       </ul>
     </div>
+    
+    <script>
+      !function(){
+        const images = [
+          {src: "/profile/1.png", width: 250, height: 250},
+          {src: "/profile/2.png", width: 250, height: 250},
+          {src: "/profile/3.png", width: 250, height: 250}
+        ];
+        const defaultImage = "/profile/1.png";
+        const profileImage = document.getElementById("profile-image");
+        const imageSources = images.map(img => img.src);
+        let currentIndex = images.findIndex(img => img.src === defaultImage);
+
+        window.addEventListener("load", () => {
+          images.forEach((img, index) => {
+            if (index !== currentIndex) {
+              const preloadImg = new Image();
+              preloadImg.src = img.src;
+            }
+          });
+        });
+
+        if (profileImage) {
+          profileImage.addEventListener("click", () => {
+            profileImage.style.opacity = "0";
+            setTimeout(() => {
+              if (imageSources.length > 1) {
+                const oldIndex = currentIndex;
+                do {
+                  currentIndex = Math.floor(Math.random() * imageSources.length);
+                } while (currentIndex === oldIndex);
+              }
+              profileImage.src = imageSources[currentIndex];
+              profileImage.style.opacity = "1";
+            }, 300);
+          });
+        }
+      }()
+    </script>
   </div>
 
   <h2 id='education'>教育经历</h2>
