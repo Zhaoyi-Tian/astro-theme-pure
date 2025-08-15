@@ -31,9 +31,10 @@
         
         if (imageSources.length > 1) {
           const oldSrc = profileImage.src;
+          const currentSrc = new URL(oldSrc).pathname;
           do {
             currentIndex = Math.floor(Math.random() * imageSources.length);
-          } while (imageSources[currentIndex] === oldSrc);
+          } while (imageSources[currentIndex] === currentSrc);
         } else if (imageSources.length === 1) {
           currentIndex = 0;
         }
