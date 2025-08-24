@@ -256,7 +256,99 @@ $$
 
 ## 抉择网络模型
 
+### Spiking DM Model 脉冲决策神经网络
+
+$$
+C_m \frac{d V(t)}{d t}=-g_L\left(V(t)-V_L\right)-I_{s y n}(t)  \\
+I_{s y n}(t)=I_{\text {ext,AMPA }}(t)+I_{\text {rec }, A M P A}(t)+I_{\text {rec }, N M D A}(t)+I_{\text {rec }, \mathrm{GABA}}(t)  
+$$
+
+其中
+$$
+\begin{gathered}  
+I_{\text {ext,AMPA }}(t)=g_{\text {ext,AMPA }}\left(V(t)-V_E\right) s^{\text {ext,AMPA }}(t) \\  
+I_{\text {rec,AMPA }}(t)=g_{\text {rec,AMPA }}\left(V(t)-V_E\right) \sum_{j=1}^{C_E} w_j s_j^{A M P A}(t) \\  
+I_{\text {rec,NMDA }}(t)=\frac{g_{\mathrm{NMDA}}\left(V(t)-V_E\right)}{\left(1+\left[\mathrm{Mg}^{2+}\right] \exp (-0.062 V(t)) / 3.57\right)} \sum_{j=1}^{\mathrm{C}_E} w_j s_j^{\mathrm{NMDA}}(t) \\  
+I_{\mathrm{rec}, \mathrm{GABA}}(t)=g_{\mathrm{GABA}}\left(V(t)-V_l\right) \sum_{j=1}^{C_1} s_j^{\mathrm{GABA}}(t)  
+\end{gathered}  
+$$
+![image-20250824162005938](C:\Users\50376\AppData\Roaming\Typora\typora-user-images\image-20250824162005938.png)
+
+![image-20250824162238113](C:\Users\50376\AppData\Roaming\Typora\typora-user-images\image-20250824162238113.png)
+
+![image-20250824162300289](C:\Users\50376\AppData\Roaming\Typora\typora-user-images\image-20250824162300289.png)
+
+### Rate DM Model 速率决策神经网络
+
+$$
+r_i = F(x_i) = \frac{ax_i - b}{1-\exp(-d(ax_i-b))}\\
+\frac{dS_1}{dt} = F(x_1)\,\gamma(1-S_1)-S_1/\tau_s\\
+\frac{dS_2}{dt} = F(x_2)\,\gamma(1-S_2)-S_2/\tau_s\\
+x_1 = J_E S_1 + J_I S_2 + I_0 + I_{noise1} + J_{ext}\mu_1\\
+x_2 = J_E S_2 + J_I S_1 + I_0 + I_{noise2} +J_{ext}\mu_2\\
+dI_{noise1} = - I_{noise1} \frac{dt}{\tau_0} + \sigma dW \\
+dI_{noise2} = - I_{noise2} \frac{dt}{\tau_0} + \sigma dW\\
+\mu_1 =\mu_0(1+c'/100)\\
+\mu_2 =\mu_0(1-c'/100)
+$$
+
+![image-20250824163919029](C:\Users\50376\AppData\Roaming\Typora\typora-user-images\image-20250824163919029.png)
+
+![image-20250824163941574](C:\Users\50376\AppData\Roaming\Typora\typora-user-images\image-20250824163941574.png)
+
 ## 兴奋抑制平衡网络
+
+### An E-I balance neural network
+
+![image-20250824210233805](C:\Users\50376\AppData\Roaming\Typora\typora-user-images\image-20250824210233805.png)
+$$
+\tau \frac{du_i^E}{dt} = -u_i^E + \sum_{j=1}^{K_E} J_{EE} r_j^E + \sum_{j=1}^{K_I} J_{EI} r_j^I + I_i^E\\
+
+
+
+\tau \frac{du_i^I}{dt} = -u_i^I + \sum_{j=1}^{K_I} J_{II} r_j^I + \sum_{j=1}^{K_E} J_{IE} r_j^I + I_i^I
+$$
+整体结构均为**自身衰减 + 突触输入整合 + 外部输入**
+
+假设每个神经元以平均发放率$\mu$、方差$σ^2$不规则发放：
+
+兴奋性（E）神经元接收的 recurrent 输入的均值： $~K_E J_{EE} μ+K_I J_{EI} μ$
+
+兴奋性（E）神经元接收的 recurrent 输入的方差: $~K_E (J_{EE })^2 σ^2+K_I (J_{EI })^2 σ^2$
+
+**平衡条件**: 
+
+- $K_E J_{EE}+K_I J_{EI }≈0$; 均值接近零
+- $J_{EE}\sim\frac{1}{\sqrt{K_E} },J_{EI}\sim\frac{1}{\sqrt{K_I} }$ ;方差为 1 阶
+
+
+
+### Neurons connected with plastic feedforward inhibition
+
+**前馈抑制可塑性神经元模型**
+
+![image-20250824210936265](C:\Users\50376\AppData\Roaming\Typora\typora-user-images\image-20250824210936265.png)
+$$
+% 神经元动力学方程
+\tau \frac{dV_i}{dt} = \left( V^\text{rest} - V_i \right) + \left( g_i^E (V^E - V_i) + g_i^I (V^I - V_i) + I_b \right) \times \frac{1}{g^\text{leak}}\\
+
+% 突触后电导更新（接收脉冲时）
+g_i^E \to g_i^E + \Delta g_{ij}^E, \quad g_i^I \to g_i^I + \Delta g_{ij}^I\\
+
+% 电导衰减动力学
+\tau_E \frac{dg_i^E}{dt} = -g_i^E, \quad \tau_I \frac{dg_i^I}{dt} = -g_i^I\\
+
+% 电导变化量与权重的关系
+\Delta g_{ij} = \bar{g} \, W_{ij}\\
+
+% 权重可塑性说明（文本，非公式）
+\text{$W_{ij}$ can be plastic or fixed}
+$$
+**Spiking-timing-dependent learning rule:**
+$$
+\Delta w=\eta(pre\times post-\rho_0\times pre)
+$$
+![image-20250824211721014](C:\Users\50376\AppData\Roaming\Typora\typora-user-images\image-20250824211721014.png)
 
 ## 连续吸引子网络模型
 
