@@ -352,6 +352,55 @@ $$
 
 ## 连续吸引子网络模型
 
+### Amari-Hopfield Network
+
+$$
+S_i(t + 1) = \text{sign}\left( \sum_{j = 1}^{N} w_{ij} S_j(t) - \theta_i \right)\\
+w_{ij} = \frac{1}{N} \sum_{\mu = 1}^{P} \xi_i^\mu \xi_j^\mu \quad (i \neq j) \\
+w_{ii} = 0\\
+$$
+
+![image-20250825193437836](C:\Users\50376\AppData\Roaming\Typora\typora-user-images\image-20250825193437836.png)
+$$
+\text{Energy function}:\;E = -\frac{1}{2} \sum_{i = 1}^{N} \sum_{j = 1}^{N} w_{ij} S_i S_j + \sum_{i = 1}^{N} \theta_i S_i
+$$
+
+### Modern Hopfield Network with Hidden Layer
+
+![image-20250825201407747](C:\Users\50376\AppData\Roaming\Typora\typora-user-images\image-20250825201407747.png)
+$$
+\begin{cases} 
+\tau_f \frac{d v_i}{d t} = \sum_{\mu=1}^{N_h} \xi_{i \mu} f_\mu - v_i + I_i & (f_\mu = f(\{h_\mu\})) \\
+\tau_h \frac{d h_\mu}{d t} = \sum_{i=1}^{N_f} \xi_{\mu i} g_i - h_\mu & (g_i = g(\{v_i\}))
+\end{cases}
+$$
+
+$$
+\text{Energy function:}\;
+E(t) = \left[ \sum_{i=1}^{N_f} (v_i - I_i) g_i - L_v \right] + \left[ \sum_{\mu=1}^{N_h} h_\mu f_\mu - L_h \right] - \sum_{\mu, i} f_\mu \xi_{\mu i} g_i\\
+\frac{d E(t)}{d t} = -\tau_f \sum_{i, j=1}^{N_f} \frac{d v_i}{d t} \frac{\partial^2 L_v}{\partial v_i \partial v_j} \frac{d v_j}{d t} - \tau_h \sum_{\mu, \nu=1}^{N_h} \frac{d h_\mu}{d t} \frac{\partial^2 L_h}{\partial h_\mu \partial h_\nu} \frac{d h_\nu}{d t} \leq 0
+$$
+
+$$
+\text{Activation functions:}\;f_\mu = \frac{\partial L_h}{\partial h_\mu}, \quad g_i = \frac{\partial L_v}{\partial v_i}
+$$
+
+### Continuous Attractor neural network(CANN)
+
+$$
+\tau \frac{\partial U(x, t)}{\partial t} = -U(x, t) + \rho \int J\left(x, x'\right) r\left(x', t\right) d x' + I^{ext}\\
+r(x, t) = \frac{U^{2}(x, t)}{1 + k \rho \int U^{2}(x, t) d x}\\
+J\left(x, x'\right) = \frac{J_{0}}{\sqrt{2 \pi} a} \exp \left[ -\frac{\left(x - x'\right)^{2}}{2 a^{2}} \right]\\
+$$
+
+![image-20250825204915856](C:\Users\50376\AppData\Roaming\Typora\typora-user-images\image-20250825204915856.png)
+
+**bump** 状态是指 CANN 达到稳定状态时，**神经元群体的突触输入**$(\bar{U}(x|z))$与**发放率**$(\bar{r}(x|z))$在空间上呈现 **“局部高活动、全局低活动”** 的高斯型分布，此时：
+$$
+\overline{U}(x | z) = \frac{A \rho J}{\sqrt{2}} \exp \left[ -\frac{(x - z)^{2}}{4 a^{2}} \right]\\
+\overline{r}(x | z) = A exp \left[ -\frac{(x - z)^{2}}{4 a^{2}} \right]
+$$
+
 ## 循环神经网络
 
 ## 脉冲神经网络训练
