@@ -435,6 +435,54 @@ $$
 | **BPTT** (时间反向传播)        | `O(n^2T + nmT)` | `O(mnT + n^2T)` | 离线学习 (全序列处理) | • LSTM/GRU • 时序建模      | • 业界标准实现 • 库支持完善 • 理论完备               | • 内存随序列线性增长 • 长序列训练困难 • 梯度消失/爆炸 |
 | **BrainScale** (SNN优化)       | `O(n\log n)`    | `O(mn)`         | 在线学习 (硬件友好)   | • 大规模SNN • 脉冲神经网络 | • 93%+梯度精度保持 • 支持10^5级神经元 • 硬件加速     | • 依赖输入符号一致性 • 特定SNN架构 • 理论近似性限制   |
 
+## 循环神经网络+库网络
+
+**RNN training & Reservoir Computing**
+
+### RNN
+
+$$
+\tau \frac{d \boldsymbol{r}}{d t} = -\boldsymbol{r} + \boldsymbol{f}\left( W^{\mathrm{rec}} \boldsymbol{r} + W^{\mathrm{in}} \boldsymbol{u} + \boldsymbol{b}^{\mathrm{rec}} + \sqrt{2 \tau} \sigma_{\mathrm{rec}} \boldsymbol{\zeta} \right)\\
+\downarrow \text{ discrete description }\\
+
+\boldsymbol{r}_{t} = (1 - \alpha) \boldsymbol{r}_{t - d t} + \alpha f\left( W^{\mathrm{rec}} \boldsymbol{r}_{t - d t} + W^{\mathrm{in}} \boldsymbol{u}_{t} + \boldsymbol{b}^{\mathrm{rec}} + \sqrt{\frac{2}{\alpha}} \sigma_{\mathrm{rec}} N(0,1) \right)
+$$
+
+![image-20250827115226180](C:\Users\50376\AppData\Roaming\Typora\typora-user-images\image-20250827115226180.png)
+
+### Echo state machine
+
+![image-20250827115420190](C:\Users\50376\AppData\Roaming\Typora\typora-user-images\image-20250827115420190.png)
+$$
+
+    \mathbf{h}(t) = (1 - \alpha) \mathbf{h}(t-1) + \alpha \cdot \tanh\left( \mathbf{W}^{\mathrm{rec}} \mathbf{h}(t-1) + \mathbf{W}^{\mathrm{in}} \mathbf{u}(t) + \mathbf{b} \right)\\
+
+% 网络输出方程 (线性读出)
+    \mathbf{y}(t) = \mathbf{W}^{\mathrm{out}} \mathbf{h}(t)
+$$
+训练$W^{out}$（岭回归）：
+$$
+% 输出权重的训练 (岭回归目标函数)
+    \text{目标函数：}\min_{\mathbf{W}^{\mathrm{out}}} \left\| \mathbf{Y}^{\mathrm{target}} - \mathbf{W}^{\mathrm{out}} \mathbf{H} \right\|^2_2 + \beta \left\| \mathbf{W}^{\mathrm{out}} \right\|^2_2\\
+
+% 输出权重的训练 (岭回归解析解)
+    \text{解析解：}\mathbf{W}^{\mathrm{out}} = \mathbf{Y}^{\mathrm{target}} \mathbf{H}^T \left( \mathbf{H} \mathbf{H}^T + \beta \mathbf{I} \right)^{-1}
+$$
+
+$$
+% 回声状态属性（ESP）的充分条件
+    \sigma_{\mathrm{max}} \left( \mathbf{W}^{\mathrm{rec}} \right) < 1\\
+
+% 回声状态属性（ESP）的必要条件
+    
+$$
+
+回声状态属性（ESP）的充分条件是$\sigma_{\mathrm{max}} \left( \mathbf{W}^{\mathrm{rec}} \right) < 1$
+
+此外$ \left| \lambda_{\mathrm{max}} \left( \mathbf{W}^{\mathrm{rec}} \right) \right| > 1 \quad \Rightarrow \quad \text{ESP does not hold}$
+
+![image-20250827120555035](C:\Users\50376\AppData\Roaming\Typora\typora-user-images\image-20250827120555035.png)
+
 ## 脉冲神经网络训练
 
 ## 课表

@@ -3,7 +3,8 @@
     { src: "/profile/1.png", width: 250, height: 250 },
     { src: "/profile/2.png", width: 250, height: 250 },
     { src: "/profile/3.png", width: 250, height: 250 },
-    { src: "/profile/4.png", width: 250, height: 250 }
+    // { src: "/profile/4.png", width: 250, height: 250 },
+    { src: "/profile/5.jpg", width: 250, height: 250 }
   ];
   const defaultImage = "/profile/1.png";
   const profileImage = document.getElementById("profile-image");
